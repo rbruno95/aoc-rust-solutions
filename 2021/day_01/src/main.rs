@@ -11,21 +11,21 @@ fn main() {
 }
 
 fn part_1(numbers: &Vec<u32>) {
-    println!(
-        "{}",
-        numbers.windows(2).filter(|pair| pair[0] < pair[1]).count()
-    );
+    println!("{}", increasing_pairs(numbers));
 }
 
 fn part_2(numbers: &Vec<u32>) {
     println!(
         "{}",
-        numbers
-            .windows(3)
-            .map(|triple| triple.iter().sum::<u32>())
-            .collect::<Vec<_>>()
-            .windows(2)
-            .filter(|pair| pair[0] < pair[1])
-            .count()
+        increasing_pairs(
+            &numbers
+                .windows(3)
+                .map(|triple| triple.iter().sum::<u32>())
+                .collect::<Vec<_>>()
+        )
     );
+}
+
+fn increasing_pairs(numbers: &Vec<u32>) -> usize {
+    numbers.windows(2).filter(|pair| pair[0] < pair[1]).count()
 }
